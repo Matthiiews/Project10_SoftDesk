@@ -1,4 +1,4 @@
-from uuid import UUID
+from uuid import uuid4
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -42,7 +42,7 @@ class Comment(models.Model):
     issue = models.ForeignKey(Issue, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
-    uuid = models.UUIDField(unique=True, default=UUID.uuid4, editable=False)
+    uuid = models.UUIDField(unique=True, default=uuid4, editable=False)
     created_time = models.DateTimeField(auto_now=True)
 
 
