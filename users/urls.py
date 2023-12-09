@@ -5,6 +5,8 @@ from . import views
 
 
 urlpatterns = [
+    # URL pour l'inscription d'un utilisateur
     path('signup/', views.SignupView.as_view(), name='signup'),
-    path('login/', TokenObtainPairView.as_view(), name='login')
+    # URL pour la connexion d'un utilisateur et l'obtention d'un token JWT
+    path('login/', TokenObtainPairView.as_view(), name='login'),
 ]
