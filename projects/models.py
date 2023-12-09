@@ -4,11 +4,20 @@ from django.contrib.auth.models import User
 
 
 class Contributor(models.Model):
+    """
+    Model representing a contributor to a project.
+    Each contributor is associated with a user and a project.
+    """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey('Project', on_delete=models.CASCADE)
 
 
 class Project(models.Model):
+    """
+    Model representing a project.
+    A project has a name, description, type (e.g., back-end, front-end),
+    and creation time.
+    """
     name = models.CharField(max_length=255)
     description = models.TextField()
     type_choices = [
@@ -21,6 +30,11 @@ class Project(models.Model):
 
 
 class Issue(models.Model):
+    """
+    Model representing an issue in a project.
+    An issue has a title, description, priority, tag, status, project association,
+    and creation time.
+    """
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     description = models.TextField()
@@ -39,6 +53,10 @@ class Issue(models.Model):
 
 
 class Comment(models.Model):
+    """Model representing a comment on an issue.
+    A comment has an issue association, an author (user), text, 
+    a unique identifier, and creation time.
+    """
     issue = models.ForeignKey(Issue, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
