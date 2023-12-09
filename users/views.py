@@ -6,7 +6,8 @@ from .serializers import SignupSerializer
 
 
 class SignupView(generics.CreateAPIView):
-    """API view for user registration.
+    """
+    API view for user registration.
     This view allows users to register by providing necessary information.
     """
     queryset = User.objects.all()
