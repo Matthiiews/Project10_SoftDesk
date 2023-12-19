@@ -22,7 +22,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
                          can_be_contacted=validated_data["can_be_contacted"],
                          can_data_be_shared=validated_data["can_data_be_shared"
                                                            ])
-
+        user.set_password(validated_data["password"])
         user.save()
         return user
 
@@ -55,6 +55,7 @@ class ContributorSerializer(serializers.ModelSerializer):
         fields = ["id", "user"]
 
     def validate_user(self, value):
+        "Extracting first user corresponding to primary key provided as parameter in the query"
         user = UserModel.objects.filter(pk=value).first()
 
         if user in None:

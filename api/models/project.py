@@ -9,6 +9,7 @@ class Project(models.Model):
     A project has a name, description, type (e.g., back-end, front-end),
     and creation time.
     """
+    # project_types for project
     BACKEND = "BKD"
     FRONTEND = "FTD"
     IOS = "IOS"
@@ -89,7 +90,7 @@ class Issue(models.Model):
                                verbose_name=_("Issue Author"))
     assigned_to = models.ForeignKey("api.User", on_delete=models.CASCADE,
                                     related_name="Issue contributors",
-                                    verbase_name=_("Issue assigned to"))
+                                    verbose_name=_("Issue assigned to"))
     name = models.CharField(
             max_length=100, verbose_name=_("Name of issue"),
     )
