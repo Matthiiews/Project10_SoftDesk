@@ -4,7 +4,7 @@ from django.core.validators import MinValueValidator
 from django.utils.translation import gettext_lazy as _
 
 
-class CustomUser(AbstractUser):
+class User(AbstractUser):
     """
     Custom user model with additional fields.
     This model extends the default Django `AbstractUser` model and includes

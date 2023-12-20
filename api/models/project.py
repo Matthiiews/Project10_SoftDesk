@@ -89,7 +89,7 @@ class Issue(models.Model):
                                related_name="issue_authors", blank=True,
                                verbose_name=_("Issue Author"))
     assigned_to = models.ForeignKey("api.User", on_delete=models.CASCADE,
-                                    related_name="Issue contributors",
+                                    related_name="Issue_contributors",
                                     verbose_name=_("Issue assigned to"))
     name = models.CharField(
             max_length=100, verbose_name=_("Name of issue"),
