@@ -5,11 +5,11 @@ import uuid
 
 class Project(models.Model):
     """
-    Model representing a project.
-    A project has a name, description, type (e.g., back-end, front-end),
-    and creation time.
+    Modèle représentant un projet.
+    Un projet a un nom, une description, un type (par exemple, back-end,
+    front-end), et une heure de création.
     """
-    # project_types for project
+    # Types de projets
     BACKEND = "BKD"
     FRONTEND = "FTD"
     IOS = "IOS"
@@ -44,23 +44,23 @@ class Project(models.Model):
 
 class Issue(models.Model):
     """
-    Model representing an issue in a project.
-    An issue has a title, description, priority, tag, status, project
-    association and creation time.
-    Issue is related to a project, default is state is ToDo
+    Modèle représentant un problème dans un projet.
+    Un problème a un titre, une description, une priorité, un tag, un statut,
+    une association au projet et une heure de création.
+    Par défaut, l'état d'un problème est "À faire" (ToDo).
     """
 
-    # tags for issue
+    # Tags pour le problème
     BUG = "B"
     FEATURE = "FT"
     TASK = "TK"
 
-    # State for issue
+    # États pour le problème
     TODO = "TD"
     IN_PROGRESS = "IP"
     FINISHED = "FS"
 
-    # Priority for issue
+    # Priorité pour le problème
     LOW = "L"
     MEDIUM = "M"
     HIGH = "H"
@@ -111,12 +111,13 @@ class Issue(models.Model):
     )
 
     def __str__(self):
-        return (f"{self.name} | {self.tag} | {self.state} | {self.priority} | {self.project} ")
+        return (
+            f"{self.name} | {self.tag} | {self.state} | {self.priority} | {self.project} ")
 
 
 class Comment(models.Model):
     """
-    Comment is related to an Issue
+    Un commentaire est lié à un problème
     """
 
     created_time = models.DateTimeField(

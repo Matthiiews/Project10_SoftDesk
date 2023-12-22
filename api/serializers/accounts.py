@@ -7,8 +7,8 @@ UserModel = get_user_model()
 
 class UserCreateSerializer(serializers.ModelSerializer):
     """
-    Serializer for user registration.
-    This serializer handles the validation and creation of a new user.
+    Sérialiseur pour l'enregistrement d'un utilisateur.
+    Ce sérialiseur gère la validation et la création d'un nouvel utilisateur.
     """
 
     class Meta:
@@ -42,12 +42,12 @@ class UserDetailSerializer(serializers.ModelSerializer):
 
 class ContributorSerializer(serializers.ModelSerializer):
     """
-    User/Contributor Serializer
-    - selected information about the User
+    Sérialiseur pour l'Utilisateur/Contributeur
+    - Informations sélectionnées sur l'utilisateur.
     """
 
-    # Create attribute 'user', which is write_only because we just need to
-    # give a value
+    # Crée l'attribut 'user', qui est write_only car nous avons juste besoin
+    # de donner une valeur
     user = serializers.IntegerField(write_only=True)
 
     class Meta:
@@ -55,7 +55,8 @@ class ContributorSerializer(serializers.ModelSerializer):
         fields = ["id", "user"]
 
     def validate_user(self, value):
-        "Extracting first user corresponding to primary key provided as parameter in the query"
+        "Extraction du premier utilisateur correspondant à la clé primaire"
+        "fournie en tant que paramètre dans la requête"
         user = UserModel.objects.filter(pk=value).first()
 
         if user in None:

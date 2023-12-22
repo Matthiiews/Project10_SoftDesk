@@ -5,17 +5,17 @@ from api.models.project import Project, Issue, Comment
 
 class ProjectCreateSerializer(serializers.ModelSerializer):
     """
-    serializer to create a Project
-        - name, description and project_type are mandatory
+    Sérialiseur pour créer un projet
+    - Le nom, la description et le type de projet sont obligatoires
     """
 
     class Meta:
         model = Project
-        fields = ["id", "name", "description, project type"]
+        fields = ["id", "name", "description", "project_type"]
 
     def validate(self, attrs):
         if (self.context["view"]
-            .project.filter(namme=attrs["name"],
+            .project.filter(name=attrs["name"],
                             project_type=attrs["project_type"]).exists()):
             raise serializers.ValidationError(
                 "Attention! This project exists already.")
@@ -39,9 +39,9 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
 
 class IssueCreateSerializer(serializers.ModelSerializer):
     """
-    serializer to create an Issue
-        - mandatory fields: name, description, state, tag, priority and
-        assigned_to
+    Sérialiseur pour créer un problème
+    - Champs obligatoires : nom, description, état, tag, priorité et
+    attribué à
     """
 
     class Meta:
@@ -82,8 +82,8 @@ class IssueDetailSerializer(serializers.ModelSerializer):
 
 class CommentCreateSerializer(serializers.ModelSerializer):
     """
-    serializer to create a Comment
-        - mandatory fields: name and description
+    Sérialiseur pour créer un commentaire
+    - Champs obligatoires : nom et description.
     """
 
     class Meta:
