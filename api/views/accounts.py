@@ -15,8 +15,9 @@ UserModel = get_user_model()
 
 class RegisterView(generics.CreateAPIView):
     """
-    API view for user registration.
-    This view allows users to register by providing necessary information.
+    Vue API pour l'inscription de l'utilisateur.
+    Cette vue permet aux utilisateurs de s'inscrire en fournissant les
+    informations nécessaires.
     """
     serializer_class = UserCreateSerializer
 
@@ -28,7 +29,8 @@ class UserViewSet(SerializerClassMixin, ModelViewSet):
     serializer_list_class = UserListSerializer
     permission_classes = [UserPermission]
 
-    # TODO permission that just the user can access his own data
+    # TODO Permission permettant à l'utilisateur d'accéder uniquement à ses
+    # propres données
 
     def get_queryset(self):
         return UserModel.objects.all().order_by("date_joined")

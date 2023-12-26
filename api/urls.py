@@ -10,10 +10,11 @@ from api.views.project import (
 
 app_name = "api"
 
-# Create DefaultRouter for API Root
+# Créer un routeur DefaultRouter pour la racine de l'API
 router = routers.DefaultRouter()
 router.register(r'projects', ProjectViewSet, basename='project')
-# create url like: api/projects/1/contributors/ or api/projects/1/issues/
+# Créer des URL comme : api/projets/1/contributeurs/ ou
+# api/projets/1/problemes/
 project_router = routers.NestedSimpleRouter(
     router, r"projects", lookup="project")
 project_router.register(
@@ -21,14 +22,14 @@ project_router.register(
 )
 project_router.register(r"issues", IssueViewSet, basename="project-issues")
 
-# create url like: api/projects/1/issues/1/comments/
+# Créer des URL comme : api/projets/1/problemes/1/commentaires/
 comments_router = routers.NestedSimpleRouter(
     project_router, r"issues", lookup="issue")
 comments_router.register(
     r"comments", CommentViewSet, basename="issue-comments")
 
 
-# Inclusion des vues du router dans les URLpatterns
+# Inclusion des vues du routeur dans les URLpatterns
 urlpatterns = [
     path("", include(router.urls)),
     path("register/", RegisterView.as_view(), name="Sign_up"),

@@ -38,23 +38,26 @@ class ProjectViewSet(SerializerClassMixin, ModelViewSet):
         return self.project.order_by("created_time")
 
     def perform_create(self, serializer):
-        # save the author as author and as contributor (request.user)
+        # Enregistrez l'auteur en tant qu'auteur et en tant que contributeur
+        # (request.user)
         serializer.save(
             author=self.request.user, contributors=[self.request.user])
 
 
 class ContributorViewSet(ModelViewSet):
     """
-    A simple ViewSet for creating, viewing and editing contributors/users
-    - The queryset is based on the contributors of a project
-    - Display all contributors/Users related to the project mentioned in the
-    url.
+    Un simple ViewSet pour créer, visualiser et modifier des
+    contributeurs/utilisateurs
+    - La requête est basée sur les contributeurs d'un projet
+    - Affiche tous les contributeurs/utilisateurs liés au projet mentionné
+    dans l'URL.
     """
 
     serializer_class = ContributorSerializer
     permission_classes = [IsProjectAuthorOrContributor]
 
-    _project = None  # create this variable to avoid unnecessary database queries
+    _project = None  # créez cette variable pour éviter des requêtes inutiles
+    # à la base de données
 
     @property
     def project(self):
@@ -97,10 +100,10 @@ class ContributorViewSet(ModelViewSet):
 
 class IssueViewSet(SerializerClassMixin, ModelViewSet):
     """
-    A simple ViewSet for creating, viewing and editing issues
-    - The queryset is based on the project
-    - A contributor of the project can create a new Issue and assign it to
-    himself or to another contributor
+    Un simple ViewSet pour créer, visualiser et modifier des problèmes
+    - La requête est basée sur le projet
+    - Un contributeur du projet peut créer un nouveau problème et l'attribuer à
+    lui-même ou à un autre contributeur
     """
 
     serializer_class = IssueListSerializer
@@ -130,9 +133,9 @@ class IssueViewSet(SerializerClassMixin, ModelViewSet):
 
 class CommentViewSet(SerializerClassMixin, ModelViewSet):
     """
-    A simple ViewSet for creating, viewing and editing comments
-    - The queryset is based on the issue
-    - Creates the issue_url
+    Un simple ViewSet pour créer, visualiser et modifier des commentaires
+    - La requête est basée sur le problème
+    - Crée l'URL du problème
     """
 
     serializer_class = CommentCreateSerializer

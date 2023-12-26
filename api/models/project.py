@@ -111,8 +111,7 @@ class Issue(models.Model):
     )
 
     def __str__(self):
-        return (
-            f"{self.name} | {self.tag} | {self.state} | {self.priority} | {self.project} ")
+        return (f"{self.name} | {self.tag} | {self.state} | {self.priority} | {self.project} ")
 
 
 class Comment(models.Model):

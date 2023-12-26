@@ -5,8 +5,8 @@ from api.models import Project
 
 class IsAuthor(BasePermission):
     """
-    Object-level permission to only allow obj.authors to edit and delete an
-    object.
+    Permission au niveau de l'objet permettant uniquement aux objets ayant des
+    auteurs obj.auteurs de les éditer et de les supprimer.
     """
 
     message = "You have to be the author to update or delete."
@@ -19,22 +19,23 @@ class IsAuthor(BasePermission):
 
 class IsProjectAuthorOrContributor(BasePermission):
     """
-    Object-level permission to only allow authors to edit and delete an object
-    - special permission for the ContributorViewSet
+    Permission au niveau de l'objet permettant uniquement aux auteurs de
+    modifier et supprimer un objet
+    - permission spéciale pour ContributorViewSet
     """
 
     message = "You have to be the author to update or delete."
 
     def has_permission(self, request, view):
-        # Allow safe methods (GET and POST)
+        # Autoriser les méthodes sûres (GET et POST)
         project_id = view.kwargs.get("project_pk")
         project = Project.objects.get(pk=project_id)
 
-        # Check if the request.user is a contributor
+        # Vérifier si request.user est un contributeur
         if request.user in project.contributors.all():
             return True
 
-        # Allow modification only by the project's author
+        # Autoriser la modification uniquement par l'auteur du projet
         return request.user == project.author
 
     def has_object_permission(self, request, view, obj):
@@ -49,17 +50,20 @@ class IsProjectAuthorOrContributor(BasePermission):
 
 class UserPermission(BasePermission):
     def has_permission(self, request, view):
-        return True  # Allow all requests to pass the initial permiossion check
+        return True  # Autoriser toutes les requêtes à passer la vérification
+        # initiale des permissions
 
     def has_object_permission(self, request, view, obj):
-        # Deny action on objects if the user is not authenticated
+        # Refuser l'action sur les objets si l'utilisateur n'est pas
+        # authentifié
         if not request.user.is_authenticated:
             return False
 
         if view.action in ["retrieve", "update", "partial_update"]:
             return (
                 obj == request.user
-            )  # Allow the user to retrieve, update or partial_update
-            # their own data
+            )  # Autoriser l'utilisateur à récupérer, mettre à jour ou
+            # partiellement mettre à jour ses propres données
         else:
-            return False  # For other actions, deny all requests
+            return False  # Pour les autres actions, refuser toutes les
+            # requêtes
