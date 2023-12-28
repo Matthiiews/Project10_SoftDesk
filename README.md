@@ -1,4 +1,11 @@
-# Projet 10 Développeur d'application Python OC SoftDesk API
+# SoftDesk Projet 10 Développeur d'application Python OC SoftDesk API
+
+![logo](assets/logo.png)
+
+[![forthebadge](https://forthebadge.com/images/badges/cc-0.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/uses-html.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/uses-css.svg)](https://forthebadge.com)
 
 ***Livrable du Projet 10 du parcours Développeur-d'Application Python d'OpenClassrooms***
 
@@ -10,7 +17,7 @@ d'ajouter des utilisateurs (contributeurs) à des projets spécifiques,
 de créer des problèmes au sein des projets et d'attribuer des libellés
 à ces problèmes en fonction de leurs priorités, de balises, etc.
 
-![logo](assets/logo.png)
+
 
 ## Fonctionnalités
 
