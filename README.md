@@ -17,8 +17,6 @@ d'ajouter des utilisateurs (contributeurs) à des projets spécifiques,
 de créer des problèmes au sein des projets et d'attribuer des libellés
 à ces problèmes en fonction de leurs priorités, de balises, etc.
 
-
-
 ## Fonctionnalités
 
 L'application permet de :
