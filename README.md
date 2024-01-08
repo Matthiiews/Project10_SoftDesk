@@ -52,4 +52,4 @@ pipenv shell
 
 ## Documentation
 
-* Vous pouvez accéder à la documentation de l'API ici : `http://127.0.0.1:8000/docs`
+* Vous pouvez accéder à la documentation de l'API ici : `https://documenter.getpostman.com/view/28232993/2s9YsJCD8h`
