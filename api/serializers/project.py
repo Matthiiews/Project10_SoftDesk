@@ -45,7 +45,7 @@ class IssueCreateSerializer(serializers.ModelSerializer):
     """
 
     class Meta:
-        models = Issue
+        model = Issue
         fields = [
             "id", "assigned_to", "name", "description",
             "tag", "state", "priority"
@@ -74,6 +74,7 @@ class IssueListSerializer(serializers.ModelSerializer):
 
 class IssueDetailSerializer(serializers.ModelSerializer):
     class Meta:
+        model = Issue
         fields = [
             "id", "created_time", "author", "assigned_to", "name",
             "description", "tag", "state", "priority", "project",
@@ -88,7 +89,7 @@ class CommentCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ["id", "comment", "description"]
+        fields = ["id", "name", "description"]
 
     def validate(self, value):
         if self.context["view"].comment.filter(name=value).exists():

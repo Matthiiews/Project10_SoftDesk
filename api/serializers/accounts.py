@@ -14,7 +14,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserModel
         fields = ["id", "username", "password", "age",
-                  "can_be_contated", "can_data_be_shared"]
+                  "can_be_contacted", "can_data_be_shared"]
 
     def create(self, validated_data):
         user = UserModel(username=validated_data["username"],
@@ -37,7 +37,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserModel
         fields = ["id", "username", "password", "age",
-                  "can_be_contated", "can_data_be_shared", "date_joined"]
+                  "can_be_contacted", "can_data_be_shared", "date_joined"]
 
 
 class ContributorSerializer(serializers.ModelSerializer):
@@ -59,14 +59,14 @@ class ContributorSerializer(serializers.ModelSerializer):
         "fournie en tant que paramètre dans la requête"
         user = UserModel.objects.filter(pk=value).first()
 
-        if user in None:
+        if user is None:
             raise serializers.ValidationError("User does not exists!")
 
         if user.is_superuser:
             raise serializers.ValidationError(
                 "Superuser cannot be added as contributors.")
 
-        if self.context["view"].project.contributors.filter(pk=value).exits():
+        if self.context["view"].project.contributors.filter(pk=value).exists():
             raise serializers.ValidationError(
                 "This user is already a contributor of this project.")
         return user

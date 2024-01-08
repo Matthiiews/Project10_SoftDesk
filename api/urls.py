@@ -13,8 +13,8 @@ app_name = "api"
 # Créer un routeur DefaultRouter pour la racine de l'API
 router = routers.DefaultRouter()
 router.register(r'projects', ProjectViewSet, basename='project')
-# Créer des URL comme : api/projets/1/contributeurs/ ou
-# api/projets/1/problemes/
+# Créer des URL comme : api/projects/1/contributeurs/ ou
+# api/projects/1/problemes/
 project_router = routers.NestedSimpleRouter(
     router, r"projects", lookup="project")
 project_router.register(
@@ -22,7 +22,7 @@ project_router.register(
 )
 project_router.register(r"issues", IssueViewSet, basename="project-issues")
 
-# Créer des URL comme : api/projets/1/problemes/1/commentaires/
+# Créer des URL comme : api/projects/1/problemes/1/commentaires/
 comments_router = routers.NestedSimpleRouter(
     project_router, r"issues", lookup="issue")
 comments_router.register(

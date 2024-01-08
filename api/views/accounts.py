@@ -23,6 +23,11 @@ class RegisterView(generics.CreateAPIView):
 
 
 class UserViewSet(SerializerClassMixin, ModelViewSet):
+    """
+    Vue API pour la gestion des utilisateurs.
+    Permet la création, la récupération de la liste et la récupération
+    détaillée des utilisateurs.
+    """
     serializer_class = UserListSerializer
     serializer_create_class = UserCreateSerializer
     serializer_detail_class = UserDetailSerializer
